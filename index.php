@@ -24,6 +24,7 @@
 # Routing
     Router::$routes = array(
     	'/' => '/index',     # default controller when "/" is requested
+    	'^((?!about|help).)*$' => '/users/profile/$0',
     );
     
 # Match requested uri to any routes and instantiate controller
@@ -31,5 +32,12 @@
     
 # Display environment details
 	require CORE_PATH."environment-details.php";
+	
+	
+	
+	
+	
+	
+	
 	
 ?>
