@@ -2,7 +2,11 @@
 class practice_controller extends base_controller {
 
 
-	public function signup_with_alternative_error_checking() {
+	/*-------------------------------------------------------------------------------------------------
+	Demonstrating an alternative way to handle signup errors.
+	In this method, we're submitting the signup form to itself.
+	-------------------------------------------------------------------------------------------------*/
+	public function signup() {
 		
 		# Set up view
 		$this->template->content = View::instance('v_practice_signup');
@@ -39,9 +43,7 @@ class practice_controller extends base_controller {
 		else {
 			echo $this->template;
 		}	
-				
-		
-		
+	
 	}
 
 	/*-------------------------------------------------------------------------------------------------
