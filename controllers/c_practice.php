@@ -1,11 +1,14 @@
 <?php
 class practice_controller extends base_controller {
-	
+
+	/*-------------------------------------------------------------------------------------------------
+	Demonstrate that if you echo anything out to the page before setting a 
+	header (as Router::redirect() does) you'll get a warning and it won't work.
+	-------------------------------------------------------------------------------------------------*/	
 	public function demo_header_bug() {
-		
-		echo 'Text!';
+
+		echo 'Test!';
 		Router::redirect('/users/login');
-	
 	}
 	
 	/*-------------------------------------------------------------------------------------------------
