@@ -17,32 +17,35 @@ class practice_controller extends base_controller {
 		# Initiate error
 		$this->template->content->error = '<br>';
 		
-		# If we have POST data (i.e. if the form was submitted)...
-		if($_POST) {
-			
-			# Loop through the POST data
-			foreach($_POST as $field_name => $value) {
-				
-				# If a field was blank, add a message to the error View variable
-				if($value == "") {
-					$this->template->content->error .= $field_name.' is blank.<br>';
-					$error = true;
-				}
-			}	
-				
-			# Passed
-			if(!$error) {
-				echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
-				/*
-				Code here to enter into DB
-				Code here to redirect them somewhere else
-				*/
-			}
+		# If we have no post data (i.e. the form was not yet submitted, just display the View with the signup form and be done
+		if(!$_POST) {
+			echo $this->template;
+			return;
+		}
 		
-		} 	
+		# Otherwise...
+		# Loop through the POST data
+		foreach($_POST as $field_name => $value) {
+			
+			# If a field was blank, add a message to the error View variable
+			if($value == "") {
+				$this->template->content->error .= $field_name.' is blank.<br>';
+				$error = true;
+			}
+		}	
+			
+		# Passed
+		if(!$error) {
+			echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+			/*
+			Code here to enter into DB
+			Code here to redirect them somewhere else
+			*/
+		}
 		else {
 			echo $this->template;
-		}	
+		}
+	
 	
 	}
 
