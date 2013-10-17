@@ -1,6 +1,13 @@
 <?php
 class practice_controller extends base_controller {
 	
+	public function demo_header_bug() {
+		
+		echo 'Text!';
+		Router::redirect('/users/login');
+	
+	}
+	
 	/*-------------------------------------------------------------------------------------------------
 	
 	-------------------------------------------------------------------------------------------------*/
