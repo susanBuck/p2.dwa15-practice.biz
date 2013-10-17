@@ -1,6 +1,49 @@
 <?php
 class practice_controller extends base_controller {
 
+
+	public function signup_with_alternative_error_checking() {
+		
+		# Set up view
+		$this->template->content = View::instance('v_practice_signup');
+		
+		# Innocent until proven guilty
+		$error = false;
+		
+		# Initiate error
+		$this->template->content->error = '<br>';
+		
+		# If we have POST data (i.e. if the form was submitted)...
+		if($_POST) {
+			
+			# Loop through the POST data
+			foreach($_POST as $field_name => $value) {
+				
+				# If a field was blank, add a message to the error View variable
+				if($value == "") {
+					$this->template->content->error .= $field_name.' is blank.<br>';
+					$error = true;
+				}
+			}	
+				
+			# Passed
+			if(!$error) {
+				echo "No errors! At this point, you'd want to enter their info into the DB and redirect them somewhere else...";
+				/*
+				Code here to enter into DB
+				Code here to redirect them somewhere else
+				*/
+			}
+		
+		} 	
+		else {
+			echo $this->template;
+		}	
+				
+		
+		
+	}
+
 	/*-------------------------------------------------------------------------------------------------
 	Demonstrate that if you echo anything out to the page before setting a 
 	header (as Router::redirect() does) you'll get a warning and it won't work.
