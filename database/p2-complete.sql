@@ -1,5 +1,19 @@
 /*-------------------------------------------------------------------------------------------------
+Includes table structure and sample data
+
 This will drop existing posts, users and users_users table if you have them.
+
+Each user's password matches their first name, all lowercase. 
+Ex: Sam's password is "sam"
+
+In order for this to work, you have to use the same SALTS in your app that were used to generate
+this data:
+
+/app/config/config.php:
+
+	define('PASSWORD_SALT', 'f[]3jkuoZqoQML9ugo8Nc6Rh+Y7}ZjKx<RyrG<EN');
+	define('TOKEN_SALT', 'VG6v@qgKvhUBWYmFf,aNTXkA93:<T/R92{QihsPZ');
+
 -------------------------------------------------------------------------------------------------*/
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -40,10 +54,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `users` (`user_id`, `created`, `modified`, `token`, `password`, `last_login`, `timezone`, `first_name`, `last_name`, `email`) VALUES
-(1, 1382587237, 0, '857524632803dbfb0f599588b9194953e42d6a32', '01cec651c12d15c5c57693e69ce0154b227f4701', 0, '', 'Sam', 'Seaborn', 'sam@whitehouse.gov'),
-(2, 1382587246, 0, '7a442ed0553d9c432547f6b21006442ea723477f', '25050aaf8ffe20ba4ed26811caee19b0d2b402e3', 0, '', 'Donna', 'Moss', 'donna@whitehouse.gov'),
-(3, 1382587258, 0, '67f6ec36e6d01aa360aca643f8c33cf190ba9a9c', '5c08403a5a6a563561db546c67c6c41ea28ef830', 0, '', 'Toby', 'Ziegler', 'toby@whitehouse.gov'),
-(4, 1382587269, 0, '88661e8fd533ba3494a3880e5d3b16c50c851ddb', '1c8479faf41c5b2b6a92bb9a6ea17164d5669142', 0, '', 'CJ', 'Cregg', 'cj@whitehouse.gov');
+(1, 1382587237, 0, '1f81139e9127565c43fd5c1f3c786d59f34d14cc', 'c04da1a8a57d8d7cd81a2aa8f55a2dbe833d866d', 0, '', 'Sam', 'Seaborn', 'sam@whitehouse.gov'),
+(2, 1382587246, 0, '6ce36b057e1a17bb51add2c51a82e85cb9f421dc', '777c8c084052831d4f6792a580142cfc359fd945', 0, '', 'Donna', 'Moss', 'donna@whitehouse.gov'),
+(3, 1382587258, 0, 'fb735f1888dc60e656f6b61261b36a84cdd9edf3', '2da908d5c171567c5033b5a44eeedd88eadccdc6', 0, '', 'Toby', 'Ziegler', 'toby@whitehouse.gov'),
+(4, 1382587269, 0, '161e0f31839869d78fe6c4d99219de08fbf6fab1', '597de90230cae1e03080ec424f7fd57d60a0ca0d', 0, '', 'CJ', 'Cregg', 'cj@whitehouse.gov');
 
 DROP TABLE IF EXISTS `users_users`;
 CREATE TABLE `users_users` (
