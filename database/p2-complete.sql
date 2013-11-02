@@ -30,13 +30,15 @@ CREATE TABLE `posts` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
-INSERT INTO `posts` (`post_id`, `created`, `modified`, `user_id`, `content`) VALUES
-(1, 1382587331, 1382587331, 1, 'Education is the silver bullet. Education is everything. We don''t need little changes, we need gigantic, monumental changes. Schools should be palaces. The competition for the best teachers should be fierce. They should be making six-figure salaries. Schools should be incredibly expensive for government and absolutely free of charge to its citizens, just like national defense. That''s my position. I just haven''t figured out how to do it yet. '),
-(2, 1382587349, 1382587349, 1, 'Over the past half century, we''ve split the atom, we''ve spliced the gene and we''ve roamed Tranquility Base. We''ve reached for the stars and never have we been closer to having them in our grasp. New science, new technology is making the difference between life and death, and so we need a national commitment equal to this unparalleled moment of possibility. And so I announce to you tonight that I will bring the full resources of the Federal Government and the full reach of my office to this fundamental goal: We will cure cancer by the end of this decade. '),
-(3, 1382587402, 1382587402, 2, 'Cause those large clocks on the wall that are run by the US Navy say your watch sucks. In fact they say your watch sucks in four different time zones.'),
-(4, 1382587439, 1382587439, 2, 'Air Force One undergoes maintenance every day, whether the plane''s gonna be flying or not. Every 154 days, the plane''s completely taken apart and put back together again. 24 hours before wheels-up, fuel is sealed in a tank truck and guarded by sharpshooters. One hour before wheels-up, Air Force specialist drain off a gallon and analyze it for purity and the right levels of octane and water. The wiring - and this is gonna be an area - is shielded to protect it from a thermonuclear blast. If you want to sabotage it, you have to get by 48 armed members of the Air Lift Security Unit or join the maintenance crew, which takes 12 years after a two-year background check. \r\n'),
-(5, 1382587511, 1382587511, 3, 'For 90 minutes that night, there was a coup dՎtat in this country.'),
-(6, 1382587607, 1382587607, 1, 'No, honestly, I am dumb. Most of the time I''m playing smart.');
+DROP TABLE IF EXISTS `users_users`;
+CREATE TABLE `users_users` (
+  `user_user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'follower',
+  `user_id_followed` int(11) NOT NULL COMMENT 'followed',
+  PRIMARY KEY (`user_user_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -59,16 +61,6 @@ INSERT INTO `users` (`user_id`, `created`, `modified`, `token`, `password`, `las
 (3, 1382587258, 0, 'fb735f1888dc60e656f6b61261b36a84cdd9edf3', '2da908d5c171567c5033b5a44eeedd88eadccdc6', 0, '', 'Toby', 'Ziegler', 'toby@whitehouse.gov'),
 (4, 1382587269, 0, '161e0f31839869d78fe6c4d99219de08fbf6fab1', '597de90230cae1e03080ec424f7fd57d60a0ca0d', 0, '', 'CJ', 'Cregg', 'cj@whitehouse.gov');
 
-DROP TABLE IF EXISTS `users_users`;
-CREATE TABLE `users_users` (
-  `user_user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `created` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'follower',
-  `user_id_followed` int(11) NOT NULL COMMENT 'followed',
-  PRIMARY KEY (`user_user_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
 INSERT INTO `users_users` (`user_user_id`, `created`, `user_id`, `user_id_followed`) VALUES
 (1, 1382587640, 1, 2),
 (2, 1382587662, 2, 1),
@@ -77,6 +69,13 @@ INSERT INTO `users_users` (`user_user_id`, `created`, `user_id`, `user_id_follow
 (5, 1382587664, 2, 4),
 (6, 1382587709, 3, 1);
 
+INSERT INTO `posts` (`post_id`, `created`, `modified`, `user_id`, `content`) VALUES
+(1, 1382587331, 1382587331, 1, 'Education is the silver bullet. Education is everything. We don''t need little changes, we need gigantic, monumental changes. Schools should be palaces. The competition for the best teachers should be fierce. They should be making six-figure salaries. Schools should be incredibly expensive for government and absolutely free of charge to its citizens, just like national defense. That''s my position. I just haven''t figured out how to do it yet. '),
+(2, 1382587349, 1382587349, 1, 'Over the past half century, we''ve split the atom, we''ve spliced the gene and we''ve roamed Tranquility Base. We''ve reached for the stars and never have we been closer to having them in our grasp. New science, new technology is making the difference between life and death, and so we need a national commitment equal to this unparalleled moment of possibility. And so I announce to you tonight that I will bring the full resources of the Federal Government and the full reach of my office to this fundamental goal: We will cure cancer by the end of this decade. '),
+(3, 1382587402, 1382587402, 2, 'Cause those large clocks on the wall that are run by the US Navy say your watch sucks. In fact they say your watch sucks in four different time zones.'),
+(4, 1382587439, 1382587439, 2, 'Air Force One undergoes maintenance every day, whether the plane''s gonna be flying or not. Every 154 days, the plane''s completely taken apart and put back together again. 24 hours before wheels-up, fuel is sealed in a tank truck and guarded by sharpshooters. One hour before wheels-up, Air Force specialist drain off a gallon and analyze it for purity and the right levels of octane and water. The wiring - and this is gonna be an area - is shielded to protect it from a thermonuclear blast. If you want to sabotage it, you have to get by 48 armed members of the Air Lift Security Unit or join the maintenance crew, which takes 12 years after a two-year background check. \r\n'),
+(5, 1382587511, 1382587511, 3, 'For 90 minutes that night, there was a coup dՎtat in this country.'),
+(6, 1382587607, 1382587607, 1, 'No, honestly, I am dumb. Most of the time I''m playing smart.');
 
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
