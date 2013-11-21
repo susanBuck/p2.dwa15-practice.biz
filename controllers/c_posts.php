@@ -25,6 +25,13 @@ class posts_controller extends base_controller {
 		
 		$this->template->content = View::instance("v_posts_add");
 		
+		$client_files_body = Array(
+			'/js/jquery.form.js',
+			'/js/posts_add.js'
+		);
+		
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
+
 		echo $this->template;
 		
 	}	
@@ -41,8 +48,12 @@ class posts_controller extends base_controller {
 		
 		DB::instance(DB_NAME)->insert('posts',$_POST);
 		
-		Router::redirect('/posts/');
+		$view = new View('v_posts_p_add');
 		
+		$view->created = Time::display(Time::now());
+		
+		echo $view;
+				
 	}
 	
 	

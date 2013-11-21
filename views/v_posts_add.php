@@ -1,4 +1,4 @@
-<form method='post' action='/posts/p_add'>
+<form method='post'>
 
 	<textarea name='content'></textarea>
 	
@@ -7,3 +7,5 @@
 	<input type='Submit' value='Add new post'>
 
 </form>
+
+<div id='results'></div>
