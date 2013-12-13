@@ -14,7 +14,7 @@ s.parentNode.insertBefore(ga, s); // Insert this script before it
 // When the thumbnail is clicked, instantiate a new player
 $('#thumbnail').click(function() {
 
-	player = new YT.Player('player', {
+	player = new YT.Player('ytv', {
 	  height: '390',
 	  width: '640',
 	  videoId: yt_video_id,

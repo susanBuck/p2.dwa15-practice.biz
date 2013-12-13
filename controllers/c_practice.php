@@ -16,7 +16,6 @@ class practice_controller extends base_controller {
 		# Render template
 			echo $this->template;
 		
-		
 	}
 
 	/*-------------------------------------------------------------------------------------------------
