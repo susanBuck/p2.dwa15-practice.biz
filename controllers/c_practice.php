@@ -1,6 +1,23 @@
 <?php
 class practice_controller extends base_controller {
 
+	/*-------------------------------------------------------------------------------------------------
+	
+	-------------------------------------------------------------------------------------------------*/
+	public function youtube() {
+		
+		# Setup view
+			$this->template->content = View::instance('v_practice_youtube');
+		
+		# Load CSS / JS
+			$client_files_body = Array("/js/robbie-youtube.js");
+			$this->template->client_files_body = Utils::load_client_files($client_files_body);   
+		
+		# Render template
+			echo $this->template;
+		
+		
+	}
 
 	/*-------------------------------------------------------------------------------------------------
 	
