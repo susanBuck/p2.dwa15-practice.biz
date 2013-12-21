@@ -19,6 +19,8 @@ class users_controller extends base_controller {
        # Set up the view
        $this->template->content = View::instance('v_users_signup');
        
+       $this->template->content->token = NoCSRF::generate('token');
+       
        # Render the view
        echo $this->template;
        
