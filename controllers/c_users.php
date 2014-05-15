@@ -32,6 +32,12 @@ class users_controller extends base_controller {
     -------------------------------------------------------------------------------------------------*/
     public function p_signup() {
 	    	    
+	    $csrf_pass = NoCSRF::check('token', $_POST, false, 60*10, true);
+	    
+	    if(!$csrf_pass) {	 
+			die("Error signing up.");
+		}
+	    	    	    	    
 	    # Mark the time
 	    $_POST['created']  = Time::now();
 	    
